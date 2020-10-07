@@ -7,22 +7,26 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
-        int m = scan.nextInt();
-        int a[][] = new int[n][m];
+        int a[][] = new int[n][n];
+        boolean flag = true;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < n; j++) {
                 a[i][j] = scan.nextInt();
             }
         }
-        System.out.println(m + " " + n);
-        for (int i = 0; i < m; i++) {
-            for (int j = n - 1; j >= 0; j--) {
-                System.out.print(a[j][i]);
-                if (j != 0) {
-                    System.out.print(" ");
+        for (int i = 0; i < n; i++) {
+            if (!flag) {
+                break;
+            }
+            for (int j = 1; j < n - i; j++) {
+                if (a[i][i + j] != a[i + j][i]) {
+                    flag = false;
+                    System.out.print("no");
                 }
             }
-            System.out.println();
+        }
+        if (flag) {
+            System.out.print("yes");
         }
     }
 }
